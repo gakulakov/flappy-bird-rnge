@@ -1,20 +1,28 @@
 import React, {PureComponent} from 'react'
+import {View, StyleSheet} from "react-native";
 
+const RADIUS = 20;
 
-export default class Box extends PureComponent {
+class Finger extends PureComponent {
     render() {
-        const size = 100
-        const x = this.props.x - size / 2
-        const y = this.props.y - size / 2
+        const x = this.props.position[0] - RADIUS / 2;
+        const y = this.props.position[1] - RADIUS / 2;
         return (
-            <div style={{
-                position: 'absolute',
-                width: size,
-                height: size,
-                backgroundColor: 'red',
-                left: x,
-                top: y
-            }} />
-        )
+            <View style={[styles.finger, { left: x, top: y }]} />
+        );
     }
 }
+
+const styles = StyleSheet.create({
+    finger: {
+        borderColor: "#CCC",
+        borderWidth: 4,
+        borderRadius: RADIUS * 2,
+        width: RADIUS * 2,
+        height: RADIUS * 2,
+        backgroundColor: "pink",
+        position: "absolute"
+    }
+});
+
+export { Finger };
